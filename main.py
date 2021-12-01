@@ -120,7 +120,7 @@ def generate_html():
 	</html>"""
 
 	try:
-		with open("index.html", "w") as archivo:
+		with open("shared/index.html", "w") as archivo:
 			archivo.write(html)
 			print("Se creó el archivo exitosamente")
 	except:
