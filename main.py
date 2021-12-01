@@ -66,6 +66,19 @@ def ejecutar_subproceso(bash_command):
 	p.wait()
 	return p
 
+def generate_task_and_time_data():
+	p = ejecutar_subproceso("top -n 1")
+
+	time = p.stdout.readline().decode().strip()
+	time = re.sub(" +", " ", time)
+	
+	tasks = p.stdout.readline().decode().strip()
+	tasks = re.sub(" +", " ", tasks)
+
+	data_tasks = tasks.split(' ')
+	data_time = time.split(' ')
+
+	return f"Total tasks: {data_tasks[1]}, Running: {data_tasks[3]}, Sleeping: {data_tasks[5]} | {data_time[2]}"
 
 def generate_table_stats():
 	table = """
@@ -110,15 +123,6 @@ def generate_table_stats():
 	"""
 
 	return table
-
-def get_time():
-	time_cmd = ejecutar_subproceso("top -bn1")
-
-	top = time_cmd.stdout.readlines()[0].decode()
-
-	time = top.split(" ")
-
-	return time[2]
 
 def generar_grafica_memoria():
 
@@ -240,7 +244,7 @@ def generate_html():
 			</div>
 
 			<div class="data">
-				<h1>{get_time()}</h1>
+				<h1>{generate_task_and_time_data()}</h1>
 			</div>
 
 			<div class="table-container">
@@ -264,4 +268,4 @@ def generate_html():
 		sys.stderr.write("Error escribiendo el archivo")
 	
 generate_html()
-# generate_table_stats()
+# print(generate_task_data())
