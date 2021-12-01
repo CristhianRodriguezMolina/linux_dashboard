@@ -42,7 +42,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', 29.91]
+          ['Memory', 31.68]
         ]);
 
         var options = {
@@ -56,7 +56,36 @@
 
         chart.draw(data, options);
       }
-    </script>	
+    </script>
+		
+	<script type="text/javascript">
+        google.charts.load('current', { 'packages': ['table'] });
+        google.charts.setOnLoadCallback(drawTable);
+
+        function drawTable() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Repository');
+            data.addColumn('string', 'Tag');
+            data.addColumn('string', 'Image id');
+			data.addColumn('string', 'Created');
+			data.addColumn('string', 'Size');
+            data.addRows([
+                
+	['stat-graph', 'latest', '5caa624669c6', '35 hours ago', '55MB'],
+['<none>', '<none>', '8745e7728e60', '2 days ago', '276MB'],
+['<none>', '<none>', 'f886153fb0b7', '2 days ago', '277MB'],
+['httpd', 'alpine', '311749934a8f', '12 days ago', '55MB'],
+['python', 'latest', 'f48ea80eae5a', '13 days ago', '917MB'],
+['ubuntu', 'latest', 'ba6acccedd29', '6 weeks ago', '72.8MB'],
+['centos', 'latest', '5d0da3dc9764', '2 months ago', '231MB'],
+            ]);
+
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+
+            table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
+        }
+    </script>
+	
 	</head>
 	<body>
 		<div class="container">
@@ -65,7 +94,7 @@
 			</div>
 
 			<div class="data">
-				<h1>22:01:22</h1>
+				<h1>22:46:29</h1>
 			</div>
 
 			<div class="table-container">

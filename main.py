@@ -143,13 +143,76 @@ def generar_grafica_memoria():
 
 	return inicio + str(porcentaje) + fin
 
+def generate_docker_images_table():
+	
+	start = """
+	<script type="text/javascript">
+        google.charts.load('current', { 'packages': ['table'] });
+        google.charts.setOnLoadCallback(drawTable);
+
+        function drawTable() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Repository');
+            data.addColumn('string', 'Tag');
+            data.addColumn('string', 'Image id');
+			data.addColumn('string', 'Created');
+			data.addColumn('string', 'Size');
+            data.addRows([
+                
+	"""
+
+	fin = """
+            ]);
+
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+
+            table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
+        }
+    </script>
+	"""
+
+	command = ejecutar_subproceso("sudo docker image ls")
+
+	content = ""
+
+	line = command.stdout.readline().decode()
+	while True:
+		line = command.stdout.readline().decode()
+		line = re.sub(" +", " ", line)
+		
+		if not line or line.strip() == '':
+			break
+
+		data = "["	
+
+		#['Mike', { v: 10000, f: '$10,000' }, true],
+		info = line.rstrip().split(" ")
+
+		for i in range(len(info)):
+
+			if(i == len(info) - 1 or i <= 2):
+				data += f"'{info[i]}', "
+			elif(i == 3):
+				column = " ".join(info[i: len(info) - 1])
+				data += f"'{column}', "
+		
+
+
+		data = data[0:-2]
+		data += "],"
+
+		content += data + "\n"
+	
+	return start + content[0:-1] + fin
+
 # Generate the html page
 def generate_html():
 	html = f"""<html>
 	<head>
 		{styles}
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		{generar_grafica_memoria()}	
+		{generar_grafica_memoria()}
+		{generate_docker_images_table()}
 	</head>
 	<body>
 		<div class="container">
