@@ -37,6 +37,10 @@ styles = """<style>
         #table_div {
             width: 100%;
         }
+
+		#table_div2 {
+            width: 100%;
+        }
     </style>"""
 
 def ejecutar_subproceso(bash_command):
