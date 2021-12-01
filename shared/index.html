@@ -1,7 +1,6 @@
 <html>
-
-<head>
-    <style>
+	<head>
+		<style>
         .container {
             width: 50em;
             margin: auto;
@@ -34,56 +33,67 @@
             width: 100%;
         }
     </style>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['gauge'] });
-        google.charts.setOnLoadCallback(drawChart);
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['table']});
+      google.charts.setOnLoadCallback(drawTable);
 
-        function drawTable() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Container ID');
-            data.addColumn('string', 'Name');
-            data.addColumn('string', 'CPU %');
-            data.addColumn('string', 'RAM Usage');
-            data.addColumn('string', 'RAM %');
-            data.addRows([
-                ["e49706d1bc6a", "elated_rubin", "0.00%", "7.941MiB", "0.03%"],
-            ]);
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Container ID');
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'CPU %');
+		data.addColumn('string', 'RAM Usage');
+		data.addColumn('string', 'RAM %');
+        data.addRows([
+	["e49706d1bc6a", "elated_rubin", "0.00%", "7.941MiB", "0.03%"],
+	]);
 
-            var data = google.visualization.arrayToDataTable([
-                ['Label', 'Value'],
-                ['Memory', 29.91]
-            ]);
+        var table = new google.visualization.Table(document.getElementById('table_div'));
 
-            var options = {
-                width: 400, height: 120,
-                redFrom: 90, redTo: 100,
-                yellowFrom: 75, yellowTo: 90,
-                minorTicks: 5
-            };
-
-            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-
-            chart.draw(data, options);
-        }
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
     </script>
-</head>
+	
+		 <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
 
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Docker dashboard</h1>
-        </div>
+      function drawChart() {
 
-        <div class="data">
-            <h1>22:01:22</h1>
-        </div>
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Memory', 13.03]
+        ]);
 
-        <div class="table-container">
-            <div id="table_div"></div>
-        </div>
-        <div id="chart_div" style="width: 400px; height: 120px;"></div>
-    </div>
-</body>
+        var options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
 
-</html>
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>	
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<h1>Docker dashboard</h1>
+			</div>
+
+			<div class="data">
+				<h1>Total tasks: 366, Running: 1, Sleeping: 365 | 22:49:35</h1>
+			</div>
+
+			<div class="table-container">
+				<div id="table_div"></div>
+			</div>
+			<div id="chart_div" style="width: 400px; height: 120px;"></div>
+    	</div>
+	</body>
+	</html>
