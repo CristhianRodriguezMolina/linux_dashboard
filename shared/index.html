@@ -41,11 +41,13 @@
 
       function drawTable() {
         var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Container ID');
         data.addColumn('string', 'Name');
-        data.addColumn('string', 'Salary');
-        data.addColumn('string', 'Full Time Employee');
+        data.addColumn('string', 'CPU %');
+		data.addColumn('string', 'RAM Usage');
+		data.addColumn('string', 'RAM %');
         data.addRows([
-	['Mike',  {v: 10000, f: '$10,000'}, true],
+	["e49706d1bc6a", "elated_rubin", "0.00%", "7.941MiB", "0.03%"],
 	]);
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
