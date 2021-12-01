@@ -244,7 +244,7 @@ def generate_html():
 			</div>
 
 			<div class="data">
-				<h1>{generate_task_and_time_data()}</h1>
+				<h2>{generate_task_and_time_data()}</h2>
 			</div>
 
 			<div class="table-container">
