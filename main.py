@@ -71,20 +71,34 @@ def generate_table_stats():
 
       function drawTable() {
         var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Container ID');
         data.addColumn('string', 'Name');
-        data.addColumn('string', 'Salary');
-        data.addColumn('string', 'Full Time Employee');
+        data.addColumn('string', 'CPU %');
+		data.addColumn('string', 'RAM Usage');
+		data.addColumn('string', 'RAM %');
         data.addRows([
 	"""
 
-	# p = ejecutar_subproceso("sudo docker stats")
-	table += "['Mike',  {v: 10000, f: '$10,000'}, true],"
+	p = ejecutar_subproceso("sudo docker stats --no-stream")
 
+	# Discarting the first line
+	p.stdout.readline().decode()	
+
+	while True:
+		line = p.stdout.readline().decode()
+		line = re.sub(" +", " ", line)
+
+		if not line or line.strip() == '':
+			break
+		
+		data = line.split(' ')
+
+		table += f'["{data[0]}", "{data[1]}", "{data[2]}", "{data[3]}", "{data[6]}"],'
 
 	table += """
 	]);
 
-        var table = new google.visualization.Table(document.getElementById('table_div'));
+        var table = new google.visualization.Table(document.getElementById('table_div2'));
 
         table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
       }
@@ -213,6 +227,7 @@ def generate_html():
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		{generar_grafica_memoria()}
 		{generate_docker_images_table()}
+		{generate_table_stats()}
 	</head>
 	<body>
 		<div class="container">
@@ -227,6 +242,11 @@ def generate_html():
 			<div class="table-container">
 				<div id="table_div"></div>
 			</div>
+
+			<div class="table-container">
+				<div id="table_div2"></div>
+			</div>
+
 			<div id="chart_div" style="width: 400px; height: 120px;"></div>
     	</div>
 	</body>
@@ -240,7 +260,4 @@ def generate_html():
 		sys.stderr.write("Error escribiendo el archivo")
 	
 generate_html()
-
-
-
-
+# generate_table_stats()
