@@ -93,13 +93,63 @@ def generate_table_stats():
 
 	return table
 
+def get_time():
+	time_cmd = ejecutar_subproceso("top -bn1")
+
+	top = time_cmd.stdout.readlines()[0].decode()
+
+	time = top.split(" ")
+
+	return time[2]
+
+def generar_grafica_memoria():
+
+	inicio = """ <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Memory', """
+
+	fin = """]
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>"""
+
+	free = ejecutar_subproceso("free -m")
+	info_memoria = free.stdout.readlines()[1].decode()
+	info_memoria = re.sub(" +", " ", info_memoria)
+
+	campos_memoria = info_memoria.split(" ") 
+	total_memoria = campos_memoria[1]
+	uso_memoria = campos_memoria[2]
+
+	porcentaje = float(float(uso_memoria) / float(total_memoria)) * 100.0
+	porcentaje = round(porcentaje, 2)
+
+	return inicio + str(porcentaje) + fin
+
 # Generate the html page
 def generate_html():
 	html = f"""<html>
 	<head>
 		{styles}
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>      
-		{generate_table_stats()}	
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		{generar_grafica_memoria()}	
 	</head>
 	<body>
 		<div class="container">
@@ -108,7 +158,7 @@ def generate_html():
 			</div>
 
 			<div class="data">
-				<h1>20:23</h1>
+				<h1>{get_time()}</h1>
 			</div>
 
 			<div class="table-container">
