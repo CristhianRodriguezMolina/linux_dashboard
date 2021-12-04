@@ -230,7 +230,7 @@ def generate_docker_images_table():
 # Generate the html page
 def generate_html():
 
-	timeout = "<script>setTimeout(function () {window.location.reload(1);}, 5000);</script>"
+	timeout = "<script>setTimeout(function () {window.location.reload(1);}, 3000);</script>"
 
 	html = f"""<html>
 	<head>
@@ -268,7 +268,7 @@ def generate_html():
 	</html>"""
 
 	try:
-		with open("shared/index.html", "w") as archivo:
+		with open("index.html", "w") as archivo:
 			archivo.write(html)
 			print("Se creó el archivo exitosamente")
 	except:
