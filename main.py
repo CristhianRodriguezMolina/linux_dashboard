@@ -229,10 +229,14 @@ def generate_docker_images_table():
 
 # Generate the html page
 def generate_html():
+
+	timeout = "<script>setTimeout(function () {window.location.reload(1);}, 5000);</script>"
+
 	html = f"""<html>
 	<head>
 		{styles}
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		{timeout}
 		{generar_grafica_memoria()}
 		{generate_docker_images_table()}
 		{generate_table_stats()}
@@ -247,14 +251,17 @@ def generate_html():
 				<h2>{generate_task_and_time_data()}</h2>
 			</div>
 
+			<h1>List de imagenes</h1>
 			<div class="table-container">
 				<div id="table_div"></div>
 			</div>
 
+			<h1>Estadísticas de los contenedores es ejecución</h1>
 			<div class="table-container">
 				<div id="table_div2"></div>
 			</div>
 
+			<h1>Uso de memoria ram</h1>
 			<div id="chart_div" style="width: 400px; height: 120px;"></div>
     	</div>
 	</body>
