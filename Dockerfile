@@ -1,7 +1,7 @@
-FROM httpd:alpine
+FROM php:7.4-apache
 
-WORKDIR /usr/local/apache2/htdocs
+WORKDIR /var/www/html
 
-COPY index.html .
+COPY index.php .
 
 COPY main.py .

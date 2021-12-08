@@ -120,20 +120,6 @@ def generate_table_stats():
         table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
       }
     </script>
-	<script>
-		const { execSync } = require('child_process');
-
-		var command = document.getElementById("#command_input").value;
-
-		const output = execSync(command, { encoding: 'utf-8' });
-
-		var commandLogDiv = document.getElementById('#command_log');
-
-		commandLogDiv.innerHTML = output;
-
-		console.log('The output is:');
-		console.log(output);
-	</script>	
 	"""
 
 	return table
@@ -244,7 +230,7 @@ def generate_docker_images_table():
 # Generate the html page
 def generate_html():
 
-	timeout = "<script>setTimeout(function () {window.location.reload(1);}, 3000);</script>"
+	timeout = "<!-- <script>setTimeout(function () {window.location.reload(1);}, 3000);</script> -->"
 
 	html = f"""<html>
 	<head>
@@ -257,8 +243,18 @@ def generate_html():
 	</head>
 	<body>
 		<div class="container">
-			<input type="text" id="command_input" /> 
-			<div id="command_log" style="background_color: #808080; color: white" />
+			<form action="" method="post">
+				<input type="text" name="command-input" />
+				<button type="submit">Ejecutar</button>
+			</form>
+			<div id="command-log" style="background-color: #808080; color: white">
+				<?php
+					if (isset($_POST['command-input'])) {{                    
+						$salida = shell_exec($_POST['command-input']);
+						echo "<pre>$salida</pre>";
+					}}
+				?>
+			</div>
 
 			<br/>
 
@@ -287,7 +283,7 @@ def generate_html():
 	</html>"""
 
 	try:
-		with open("index.html", "w") as archivo:
+		with open("index.php", "w") as archivo:
 			archivo.write(html)
 			print("Se creó el archivo exitosamente")
 	except:
