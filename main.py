@@ -120,6 +120,20 @@ def generate_table_stats():
         table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
       }
     </script>
+	<script>
+		const { execSync } = require('child_process');
+
+		var command = document.getElementById("#command_input").value;
+
+		const output = execSync(command, { encoding: 'utf-8' });
+
+		var commandLogDiv = document.getElementById('#command_log');
+
+		commandLogDiv.innerHTML = output;
+
+		console.log('The output is:');
+		console.log(output);
+	</script>	
 	"""
 
 	return table
@@ -243,6 +257,11 @@ def generate_html():
 	</head>
 	<body>
 		<div class="container">
+			<input type="text" id="command_input" /> 
+			<div id="command_log" style="background_color: #808080; color: white" />
+
+			<br/>
+
 			<div class="header">
 				<h1>Docker dashboard</h1>
 			</div>
