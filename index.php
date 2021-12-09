@@ -5,6 +5,10 @@
 		</style> 
 
 		<style>
+		body {
+			margin: 0;
+		}
+
         .container {
             width: 50em;
             margin: auto;
@@ -94,7 +98,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', 37.34]
+          ['Memory', 20.11]
         ]);
 
         var options = {
@@ -123,15 +127,18 @@
 			data.addColumn('string', 'Size');
             data.addRows([
                 
-	['php-test', 'latest', '7a2717814365', '23 hours ago', '469MB'],
+	['dashboard-proyecto-final', 'latest', 'bee1200c7e00', '7 minutes ago', '469MB'],
+['winterhat/dashboard-proyecto-final', 'latest', 'bee1200c7e00', '7 minutes ago', '469MB'],
+['test', 'latest', '194faf60675c', '7 hours ago', '469MB'],
+['<none>', '<none>', '6615faa02809', '7 hours ago', '469MB'],
+['<none>', '<none>', '820f9c5a108f', '23 hours ago', '469MB'],
+['<none>', '<none>', '68e7bb411506', '23 hours ago', '469MB'],
+['winterhat/dashboard_proyecto_final', 'v1', '9a65cb03bc84', '24 hours ago', '54.9MB'],
+['<none>', '<none>', 'cc3871e4c89c', '4 days ago', '54.9MB'],
 ['php', '7.4-apache', 'e66e0a2a90b2', '6 days ago', '469MB'],
-['stat-graph', 'latest', '5caa624669c6', '9 days ago', '55MB'],
-['<none>', '<none>', '8745e7728e60', '10 days ago', '276MB'],
-['<none>', '<none>', 'f886153fb0b7', '10 days ago', '277MB'],
-['httpd', 'alpine', '311749934a8f', '2 weeks ago', '55MB'],
-['python', 'latest', 'f48ea80eae5a', '3 weeks ago', '917MB'],
-['ubuntu', 'latest', 'ba6acccedd29', '7 weeks ago', '72.8MB'],
-['centos', 'latest', '5d0da3dc9764', '2 months ago', '231MB'],
+['php', 'latest', '9dc9a6284b9b', '6 days ago', '484MB'],
+['graph_stats', 'latest', '59e715a9f1ca', '8 days ago', '54.9MB'],
+['httpd', 'alpine', 'da799a8c8856', '8 days ago', '54.9MB'],
             ]);
 
             var table = new google.visualization.Table(document.getElementById('table_div'));
@@ -153,7 +160,7 @@
 		data.addColumn('string', 'RAM Usage');
 		data.addColumn('string', 'RAM %');
         data.addRows([
-	["f94951566369", "dazzling_herschel", "0.00%", "24.29MiB", "0.15%"],
+	["e472d5508317", "cool_kowalevski", "0.00%", "13.75MiB", "0.06%"],
 	]);
 
         var table = new google.visualization.Table(document.getElementById('table_div2'));
@@ -165,29 +172,13 @@
 	</head>
 	<body>
 		<div class="container">
-			
-			<br/>
-
 			<div class="header">
 				<h1>Docker dashboard</h1>
 			</div>
 
 			<div class="data">
-				<h2>Total tasks: 350, Running: 2, Sleeping: 348 | 20:24:38</h2>
+				<h2>Total tasks: 410, Running: 1, Sleeping: 409 | 20:34:28</h2>
 			</div>
-
-			<h1>List de imagenes</h1>
-			<div class="table-container">
-				<div id="table_div"></div>
-			</div>
-
-			<h1>Estadísticas de los contenedores es ejecución</h1>
-			<div class="table-container">
-				<div id="table_div2"></div>
-			</div>
-
-			<h1>Uso de memoria ram</h1>
-			<div id="chart_div" style="width: 400px; height: 120px;"></div>
 
 			<h1>Consola virtual</h1>
 			<div class="form-command">
@@ -208,6 +199,19 @@ $salida</pre>";
 					}
 				?>
 			</div>
+
+			<h1>Lista de imágenes</h1>
+			<div class="table-container">
+				<div id="table_div"></div>
+			</div>
+
+			<h1>Estadísticas de los contenedores es ejecución</h1>
+			<div class="table-container">
+				<div id="table_div2"></div>
+			</div>
+
+			<h1>Uso de memoria ram</h1>
+			<div id="chart_div" style="width: 400px; height: 120px;"></div>			
     	</div>
 	</body>
 	</html>

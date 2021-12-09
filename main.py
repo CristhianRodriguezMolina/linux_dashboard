@@ -6,6 +6,10 @@ import re
 import os
 
 styles = """<style>
+		body {
+			margin: 0;
+		}
+
         .container {
             width: 50em;
             margin: auto;
@@ -290,9 +294,6 @@ def generate_html():
 	</head>
 	<body>
 		<div class="container">
-			
-			<br/>
-
 			<div class="header">
 				<h1>Docker dashboard</h1>
 			</div>
@@ -300,19 +301,6 @@ def generate_html():
 			<div class="data">
 				<h2>{generate_task_and_time_data()}</h2>
 			</div>
-
-			<h1>List de imagenes</h1>
-			<div class="table-container">
-				<div id="table_div"></div>
-			</div>
-
-			<h1>Estadísticas de los contenedores es ejecución</h1>
-			<div class="table-container">
-				<div id="table_div2"></div>
-			</div>
-
-			<h1>Uso de memoria ram</h1>
-			<div id="chart_div" style="width: 400px; height: 120px;"></div>
 
 			<h1>Consola virtual</h1>
 			<div class="form-command">
@@ -333,6 +321,19 @@ $salida</pre>";
 					}}
 				?>
 			</div>
+
+			<h1>Lista de imágenes</h1>
+			<div class="table-container">
+				<div id="table_div"></div>
+			</div>
+
+			<h1>Estadísticas de los contenedores es ejecución</h1>
+			<div class="table-container">
+				<div id="table_div2"></div>
+			</div>
+
+			<h1>Uso de memoria ram</h1>
+			<div id="chart_div" style="width: 400px; height: 120px;"></div>			
     	</div>
 	</body>
 	</html>"""
