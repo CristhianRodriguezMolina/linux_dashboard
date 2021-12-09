@@ -314,6 +314,7 @@ def generate_html():
 			<h1>Uso de memoria ram</h1>
 			<div id="chart_div" style="width: 400px; height: 120px;"></div>
 
+			<h1>Consola virtual</h1>
 			<div class="form-command">
 				<form action="" method="post">
 					<input type="text" name="command-input" />
@@ -321,7 +322,6 @@ def generate_html():
 				</form>
 			</div>
 			
-			<h1>Consola virtual</h1>
 			<div id="command-log">
 				<?php
 					if (isset($_POST['command-input'])) {{                    

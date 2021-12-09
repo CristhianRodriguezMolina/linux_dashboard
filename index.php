@@ -94,7 +94,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', 37.19]
+          ['Memory', 37.34]
         ]);
 
         var options = {
@@ -123,7 +123,7 @@
 			data.addColumn('string', 'Size');
             data.addRows([
                 
-	['php-test', 'latest', '7a2717814365', '22 hours ago', '469MB'],
+	['php-test', 'latest', '7a2717814365', '23 hours ago', '469MB'],
 ['php', '7.4-apache', 'e66e0a2a90b2', '6 days ago', '469MB'],
 ['stat-graph', 'latest', '5caa624669c6', '9 days ago', '55MB'],
 ['<none>', '<none>', '8745e7728e60', '10 days ago', '276MB'],
@@ -173,7 +173,7 @@
 			</div>
 
 			<div class="data">
-				<h2>Total tasks: 350, Running: 1, Sleeping: 349 | 20:23:31</h2>
+				<h2>Total tasks: 350, Running: 2, Sleeping: 348 | 20:24:38</h2>
 			</div>
 
 			<h1>List de imagenes</h1>
@@ -189,6 +189,7 @@
 			<h1>Uso de memoria ram</h1>
 			<div id="chart_div" style="width: 400px; height: 120px;"></div>
 
+			<h1>Consola virtual</h1>
 			<div class="form-command">
 				<form action="" method="post">
 					<input type="text" name="command-input" />
@@ -196,7 +197,6 @@
 				</form>
 			</div>
 			
-			<h1>Consola virtual</h1>
 			<div id="command-log">
 				<?php
 					if (isset($_POST['command-input'])) {                    
