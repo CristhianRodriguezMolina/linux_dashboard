@@ -42,7 +42,7 @@ styles = """<style>
             width: 100%;
         }
 
-		h1, p {
+		h1, h2, p {
 			font-family: 'Inconsolata', monospace;
 		}
 

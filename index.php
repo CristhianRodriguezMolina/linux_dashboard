@@ -41,7 +41,7 @@
             width: 100%;
         }
 
-		h1, p {
+		h1, h2, p {
 			font-family: 'Inconsolata', monospace;
 		}
 
@@ -94,7 +94,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', 37.02]
+          ['Memory', 37.19]
         ]);
 
         var options = {
@@ -173,7 +173,7 @@
 			</div>
 
 			<div class="data">
-				<h2>Total tasks: 348, Running: 1, Sleeping: 347 | 20:21:14</h2>
+				<h2>Total tasks: 350, Running: 1, Sleeping: 349 | 20:23:31</h2>
 			</div>
 
 			<h1>List de imagenes</h1>
