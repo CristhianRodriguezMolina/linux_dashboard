@@ -1,6 +1,10 @@
 <html>
 	<head>
 		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap');
+		</style> 
+
+		<style>
         .container {
             width: 50em;
             margin: auto;
@@ -36,6 +40,49 @@
 		#table_div2 {
             width: 100%;
         }
+
+		h1, p {
+			font-family: 'Inconsolata', monospace;
+		}
+
+		
+
+		.form-command {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: auto;
+			
+		}
+
+		.form-cammand form {
+			width: 100%;
+			height: auto;
+		}
+
+		.form-command button {
+			width: 7em;
+			height: auto;
+		}
+
+		.form-command input {
+			width: 52.5em;	
+			height: auto;
+		}
+
+		#command-log {
+			padding: 0.5em;
+			background-color: #01048a;
+			color: white;
+		}
+
+		#command-log pre{
+			margin: 0;
+			padding: 0;
+			font-family: 'Inconsolata', monospace;
+		}
+
     </style>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<!-- <script>setTimeout(function () {window.location.reload(1);}, 3000);</script> -->
@@ -47,7 +94,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', 26.14]
+          ['Memory', 37.02]
         ]);
 
         var options = {
@@ -76,14 +123,15 @@
 			data.addColumn('string', 'Size');
             data.addRows([
                 
-	['test', 'latest', '820f9c5a108f', '17 hours ago', '469MB'],
-['<none>', '<none>', '68e7bb411506', '17 hours ago', '469MB'],
-['winterhat/dashboard_proyecto_final', 'v1', '9a65cb03bc84', '17 hours ago', '54.9MB'],
-['<none>', '<none>', 'cc3871e4c89c', '4 days ago', '54.9MB'],
+	['php-test', 'latest', '7a2717814365', '22 hours ago', '469MB'],
 ['php', '7.4-apache', 'e66e0a2a90b2', '6 days ago', '469MB'],
-['php', 'latest', '9dc9a6284b9b', '6 days ago', '484MB'],
-['graph_stats', 'latest', '59e715a9f1ca', '7 days ago', '54.9MB'],
-['httpd', 'alpine', 'da799a8c8856', '8 days ago', '54.9MB'],
+['stat-graph', 'latest', '5caa624669c6', '9 days ago', '55MB'],
+['<none>', '<none>', '8745e7728e60', '10 days ago', '276MB'],
+['<none>', '<none>', 'f886153fb0b7', '10 days ago', '277MB'],
+['httpd', 'alpine', '311749934a8f', '2 weeks ago', '55MB'],
+['python', 'latest', 'f48ea80eae5a', '3 weeks ago', '917MB'],
+['ubuntu', 'latest', 'ba6acccedd29', '7 weeks ago', '72.8MB'],
+['centos', 'latest', '5d0da3dc9764', '2 months ago', '231MB'],
             ]);
 
             var table = new google.visualization.Table(document.getElementById('table_div'));
@@ -105,7 +153,7 @@
 		data.addColumn('string', 'RAM Usage');
 		data.addColumn('string', 'RAM %');
         data.addRows([
-	
+	["f94951566369", "dazzling_herschel", "0.00%", "24.29MiB", "0.15%"],
 	]);
 
         var table = new google.visualization.Table(document.getElementById('table_div2'));
@@ -117,19 +165,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<form action="" method="post">
-				<input type="text" name="command-input" />
-				<button type="submit">Ejecutar</button>
-			</form>
-			<div id="command-log" style="background-color: #808080; color: white">
-				<?php
-					if (isset($_POST['command-input'])) {                    
-						$salida = shell_exec($_POST['command-input']);
-						echo "<pre>$salida</pre>";
-					}
-				?>
-			</div>
-
+			
 			<br/>
 
 			<div class="header">
@@ -137,7 +173,7 @@
 			</div>
 
 			<div class="data">
-				<h2>Total tasks: 430, Running: 1, Sleeping: 429 | 13:50:23</h2>
+				<h2>Total tasks: 348, Running: 1, Sleeping: 347 | 20:21:14</h2>
 			</div>
 
 			<h1>List de imagenes</h1>
@@ -152,6 +188,26 @@
 
 			<h1>Uso de memoria ram</h1>
 			<div id="chart_div" style="width: 400px; height: 120px;"></div>
+
+			<div class="form-command">
+				<form action="" method="post">
+					<input type="text" name="command-input" />
+					<button type="submit">Ejecutar</button>
+				</form>
+			</div>
+			
+			<h1>Consola virtual</h1>
+			<div id="command-log">
+				<?php
+					if (isset($_POST['command-input'])) {                    
+						$salida = shell_exec($_POST['command-input']);
+						echo "<pre>Virtual terminal powered by Docker dashboard
+==================================================================================================
+==================================================================================================
+$salida</pre>";
+					}
+				?>
+			</div>
     	</div>
 	</body>
 	</html>

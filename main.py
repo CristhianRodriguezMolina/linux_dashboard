@@ -41,6 +41,49 @@ styles = """<style>
 		#table_div2 {
             width: 100%;
         }
+
+		h1, p {
+			font-family: 'Inconsolata', monospace;
+		}
+
+		
+
+		.form-command {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: auto;
+			
+		}
+
+		.form-cammand form {
+			width: 100%;
+			height: auto;
+		}
+
+		.form-command button {
+			width: 7em;
+			height: auto;
+		}
+
+		.form-command input {
+			width: 52.5em;	
+			height: auto;
+		}
+
+		#command-log {
+			padding: 0.5em;
+			background-color: #01048a;
+			color: white;
+		}
+
+		#command-log pre{
+			margin: 0;
+			padding: 0;
+			font-family: 'Inconsolata', monospace;
+		}
+
     </style>"""
 
 def ejecutar_subproceso(bash_command):
@@ -234,6 +277,10 @@ def generate_html():
 
 	html = f"""<html>
 	<head>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap');
+		</style> 
+
 		{styles}
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		{timeout}
@@ -243,19 +290,7 @@ def generate_html():
 	</head>
 	<body>
 		<div class="container">
-			<form action="" method="post">
-				<input type="text" name="command-input" />
-				<button type="submit">Ejecutar</button>
-			</form>
-			<div id="command-log" style="background-color: #808080; color: white">
-				<?php
-					if (isset($_POST['command-input'])) {{                    
-						$salida = shell_exec($_POST['command-input']);
-						echo "<pre>$salida</pre>";
-					}}
-				?>
-			</div>
-
+			
 			<br/>
 
 			<div class="header">
@@ -278,6 +313,26 @@ def generate_html():
 
 			<h1>Uso de memoria ram</h1>
 			<div id="chart_div" style="width: 400px; height: 120px;"></div>
+
+			<div class="form-command">
+				<form action="" method="post">
+					<input type="text" name="command-input" />
+					<button type="submit">Ejecutar</button>
+				</form>
+			</div>
+			
+			<h1>Consola virtual</h1>
+			<div id="command-log">
+				<?php
+					if (isset($_POST['command-input'])) {{                    
+						$salida = shell_exec($_POST['command-input']);
+						echo "<pre>Virtual terminal powered by Docker dashboard
+==================================================================================================
+==================================================================================================
+$salida</pre>";
+					}}
+				?>
+			</div>
     	</div>
 	</body>
 	</html>"""
