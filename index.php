@@ -98,7 +98,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', 20.11]
+          ['Memory', 20.39]
         ]);
 
         var options = {
@@ -127,18 +127,9 @@
 			data.addColumn('string', 'Size');
             data.addRows([
                 
-	['dashboard-proyecto-final', 'latest', 'bee1200c7e00', '7 minutes ago', '469MB'],
-['winterhat/dashboard-proyecto-final', 'latest', 'bee1200c7e00', '7 minutes ago', '469MB'],
-['test', 'latest', '194faf60675c', '7 hours ago', '469MB'],
-['<none>', '<none>', '6615faa02809', '7 hours ago', '469MB'],
-['<none>', '<none>', '820f9c5a108f', '23 hours ago', '469MB'],
-['<none>', '<none>', '68e7bb411506', '23 hours ago', '469MB'],
-['winterhat/dashboard_proyecto_final', 'v1', '9a65cb03bc84', '24 hours ago', '54.9MB'],
-['<none>', '<none>', 'cc3871e4c89c', '4 days ago', '54.9MB'],
+	['dashboard-proyecto-final', 'latest', '37884f4780e2', '5 minutes ago', '469MB'],
+['winterhat/dashboard-proyecto-final', 'latest', '37884f4780e2', '5 minutes ago', '469MB'],
 ['php', '7.4-apache', 'e66e0a2a90b2', '6 days ago', '469MB'],
-['php', 'latest', '9dc9a6284b9b', '6 days ago', '484MB'],
-['graph_stats', 'latest', '59e715a9f1ca', '8 days ago', '54.9MB'],
-['httpd', 'alpine', 'da799a8c8856', '8 days ago', '54.9MB'],
             ]);
 
             var table = new google.visualization.Table(document.getElementById('table_div'));
@@ -160,7 +151,7 @@
 		data.addColumn('string', 'RAM Usage');
 		data.addColumn('string', 'RAM %');
         data.addRows([
-	["e472d5508317", "cool_kowalevski", "0.00%", "13.75MiB", "0.06%"],
+	["df95c3a59e95", "practical_villani", "0.00%", "15.05MiB", "0.06%"],
 	]);
 
         var table = new google.visualization.Table(document.getElementById('table_div2'));
@@ -177,7 +168,7 @@
 			</div>
 
 			<div class="data">
-				<h2>Total tasks: 410, Running: 1, Sleeping: 409 | 20:34:28</h2>
+				<h2>Total tasks: 412, Running: 1, Sleeping: 411 | 20:40:03</h2>
 			</div>
 
 			<h1>Consola virtual</h1>
@@ -205,7 +196,7 @@ $salida</pre>";
 				<div id="table_div"></div>
 			</div>
 
-			<h1>Estadísticas de los contenedores es ejecución</h1>
+			<h1>Estadísticas de los contenedores en ejecución</h1>
 			<div class="table-container">
 				<div id="table_div2"></div>
 			</div>

@@ -327,7 +327,7 @@ $salida</pre>";
 				<div id="table_div"></div>
 			</div>
 
-			<h1>Estadísticas de los contenedores es ejecución</h1>
+			<h1>Estadísticas de los contenedores en ejecución</h1>
 			<div class="table-container">
 				<div id="table_div2"></div>
 			</div>
